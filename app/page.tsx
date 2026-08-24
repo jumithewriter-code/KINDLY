@@ -42,7 +42,6 @@ export default function Page() {
   const [generated, setGenerated] = useState(false)
   const [bathroomPending, setBathroomPending] = useState(false)
   const [caregiverComing, setCaregiverComing] = useState(false)
-  const [sidebarPreview, setSidebarPreview] = useState<string | null>(null)
 
   const openChildMode = () => { setChildMode(true); setChildScreen('home') }
   const sendBathroom = () => { setBathroomPending(true); setChildScreen('sent') }
@@ -54,9 +53,8 @@ export default function Page() {
       <aside className="sidebar">
         <div className="brand"><div className="brand-mark"><Heart size={20} fill="currentColor" /></div><span>Kindly</span></div>
         <div className="profile-mini"><div className="avatar">A</div><div><strong>Alex&apos;s space</strong><small>Caregiver view</small></div><ChevronDown size={15} /></div>
-        <nav aria-label="Main navigation">{navItems.map(({ label, icon: Icon }) => <button key={label} className={active === label ? 'nav-item active' : 'nav-item'} onClick={() => { setActive(label); setSidebarPreview(label) }} aria-describedby={sidebarPreview === label ? 'sidebar-preview' : undefined}>{active === label ? null : <Icon size={19} />}<span>{label}</span>{label === 'Requests' && bathroomPending && <b className="nav-badge">1</b>}</button>)}</nav>
-        {sidebarPreview && <div id="sidebar-preview" className="sidebar-preview" role="status">{sidebarPreview}</div>}
-        <div className="sidebar-bottom"><button className="nav-item" onClick={() => setSidebarPreview('Settings')} aria-describedby={sidebarPreview === 'Settings' ? 'sidebar-preview' : undefined}><Settings2 size={19} /><span>Settings</span></button><div className="made-for"><Sparkles size={16} /><span>Made for<br /><strong>more good days</strong></span></div></div>
+        <nav aria-label="Main navigation">{navItems.map(({ label, icon: Icon }) => <button key={label} className={active === label ? 'nav-item active' : 'nav-item'} onClick={() => setActive(label)} aria-label={label}><Icon size={19} /><span>{label}</span>{label === 'Requests' && bathroomPending && <b className="nav-badge">1</b>}<span className="nav-tooltip" role="tooltip">{label}</span></button>)}</nav>
+        <div className="sidebar-bottom"><button className="nav-item" onClick={() => setActive('Settings')} aria-label="Settings"><Settings2 size={19} /><span>Settings</span><span className="nav-tooltip" role="tooltip">Settings</span></button><div className="made-for"><Sparkles size={16} /><span>Made for<br /><strong>more good days</strong></span></div></div>
       </aside>
       <section className="main-content">
         <header className="topbar"><div><span className="mobile-brand">Kindly</span><p className="date-label">Tuesday, October 15, 2024</p><h1>{active === 'Home' ? 'Good morning, Jamie' : active}</h1></div><div className="top-actions"><IconButton label="Notifications"><Bell size={20} /></IconButton><div className="avatar large">J</div></div></header>
