@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ArrowLeft, ArrowRight, Check, Heart, Sparkles } from 'lucide-react'
 
 const steps = [
-  { title: 'Get to know Alex', detail: 'A few gentle details help Kindly feel more personal.' },
+  { title: 'Let us get to know your child', detail: 'A few gentle details help Kindly feel more personal.' },
   { title: 'Choose what helps', detail: 'Pick the supports that make everyday moments easier.' },
   { title: 'You are ready', detail: 'We will use this to shape stories, routines, and requests.' },
 ]
